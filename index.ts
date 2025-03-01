@@ -1,16 +1,14 @@
 import * as aws from "@pulumi/aws";
 
-const BUCKET_NAME = "first-test-ftr";
-
-const bucket = new aws.s3.BucketV2(BUCKET_NAME, {
-  bucket: BUCKET_NAME,
+const firstBucket = new aws.s3.BucketV2("primeiro-bucket", {
+  bucket: "primeiro-bucket-pos-full-stack-360",
   tags: {
     IAC: "true",
   },
 });
 
-const bucket2 = new aws.s3.BucketV2("second-bucket", {
-  bucket: "second-bucket",
+const secondBucket = new aws.s3.BucketV2("segundo-bucket", {
+  bucket: "segundo-bucket-pos-full-stack-360",
   tags: {
     IAC: "true",
   },
@@ -24,13 +22,13 @@ const ecr = new aws.ecr.Repository("primeiro-ecr", {
   },
 });
 
-export const bucketName = bucket.id;
-export const bucketArn = bucket.arn;
-export const bucketRegion = bucket.region;
+export const firstBucketName = firstBucket.id;
+export const firstBucketRegion = firstBucket.region;
+export const firstBucketArn = firstBucket.arn;
 
-export const bucket2Name = bucket2.id;
-export const bucket2Arn = bucket2.arn;
-export const bucket2Region = bucket2.region;
+export const secondBucketName = secondBucket.id;
+export const secondBucketRegion = secondBucket.region;
+export const secondBucketArn = secondBucket.arn;
 
 export const ecrName = ecr.name;
 export const ecrRepositoryUrl = ecr.repositoryUrl;
