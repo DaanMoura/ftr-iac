@@ -1,10 +1,10 @@
-name: Pulumi - CI
+name: Pulumi - Check
 
 on:
-  push:
+  pull_request:
     branches:
-      - 'main'
-
+      - main
+  
 jobs:
   update:
     runs-on: ubuntu-latest
@@ -42,7 +42,7 @@ jobs:
         id: run-pulumi
         uses: pulumi/actions@v6
         with:
-          command: up
+          command: preview
           stack-name: DaanMoura/iac/dev
         env:
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
